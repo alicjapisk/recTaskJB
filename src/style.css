@@ -14,7 +14,8 @@ Use a better box model (opinionated).
 
 html {
   /* Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3) */
-  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji";
   line-height: 1.15; /* 1. Correct the line height in all browsers. */
   -webkit-text-size-adjust: 100%; /* 2. Prevent adjustments of font size after orientation changes in iOS. */
   tab-size: 4; /* 3. Use a more readable tab size (opinionated). */
@@ -48,7 +49,8 @@ code,
 kbd,
 samp,
 pre {
-  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace; /* 1 */
+  font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo,
+    monospace; /* 1 */
   font-size: 1em; /* 2 */
 }
 
@@ -112,9 +114,9 @@ textarea {
 Correct the inability to style clickable types in iOS and Safari.
 */
 button,
-[type=button],
-[type=reset],
-[type=submit] {
+[type="button"],
+[type="reset"],
+[type="submit"] {
   -webkit-appearance: button;
 }
 
@@ -144,7 +146,7 @@ Correct the cursor style of increment and decrement buttons in Safari.
 1. Correct the odd appearance in Chrome and Safari.
 2. Correct the outline style in Safari.
 */
-[type=search] {
+[type="search"] {
   -webkit-appearance: textfield; /* 1 */
   outline-offset: -2px; /* 2 */
 }
@@ -191,22 +193,46 @@ body {
   font-style: normal;
   font-display: swap;
 }
-h1, h2, h3, h4, h5, h6, p,
-.h1, .h2, .h3, .h4, .h5, .h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
   margin-top: 0;
   margin-bottom: 16px;
 }
-h1:last-child, h2:last-child, h3:last-child, h4:last-child, h5:last-child, h6:last-child, p:last-child,
-.h1:last-child, .h2:last-child, .h3:last-child, .h4:last-child, .h5:last-child, .h6:last-child {
+h1:last-child,
+h2:last-child,
+h3:last-child,
+h4:last-child,
+h5:last-child,
+h6:last-child,
+p:last-child,
+.h1:last-child,
+.h2:last-child,
+.h3:last-child,
+.h4:last-child,
+.h5:last-child,
+.h6:last-child {
   margin-bottom: 0;
 }
 
-h3, .h3 {
+h3,
+.h3 {
   font-weight: 600;
   font-size: 18px;
 }
 
-ul, ol {
+ul,
+ol {
   padding-left: 0;
 }
 
@@ -1043,3 +1069,131 @@ a:hover {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+:root {
+  /* colors */
+  --color-badge-default: #4a6cf7;
+  --color-badge-foreground: #f1f5f9;
+  --color-card: #ffffff;
+  --color-border: #cbd5e1;
+  --color-muted-foreground: #334155;
+  --color-chart-1: #0ebca7;
+  --color-chart-2: #94a3b8;
+  --color-chart-3: #f45b69;
+  --color-primary-foreground: #f1f5f9;
+  --color-primitives-colors-primary: #4a6cf7;
+  /* shadows */
+  --shadow-elevation-01: 0 4px 4px 0 rgba(0, 0, 0, 0.04),
+    0 2px 20px -8px rgba(0, 0, 0, 0.1);
+  /* fonts */
+  --font-family-base: "Inter", sans-serif;
+  --font-caption-x-small-regular: 400 12px/16px var(--font-family-base);
+  --font-body-medium-semibold: 600 16px/24px var(--font-family-base);
+  --font-body-small-regular: 400 14px/20px var(--font-family-base);
+  --font-heading-large: 700 18px/24px var(--font-family-base);
+}
+
+.teams_container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  letter-spacing: -0.01em;
+}
+.team-card {
+  background-color: var(--color-card);
+  height: 252px;
+  border-radius: 16px;
+  box-shadow: var(--shadow-elevation-01);
+  display: flex;
+  flex-direction: row;
+}
+
+.team-card__team-info {
+  padding: 16px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.team-card__team-info .team-card__stats {
+  align-self: end;
+}
+
+.team-card__header {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+  padding-bottom: 16px;
+}
+
+.team-card__team-name {
+  font: var(--font-body-medium-semibold);
+}
+
+.team-card__image {
+  border: 1px solid var(--color-border);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.team-card__badge {
+  color: var(--color-badge-foreground);
+  margin-top: 32px;
+  background: var(--color-badge-default);
+  border-radius: 0 9999px 9999px 0;
+  font: var(--font-caption-x-small-regular);
+  width: 32px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.team-card__stats {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.team-card__chart {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 8px;
+}
+.team-card__chart-wins {
+  background-color: var(--color-chart-1);
+  width: var(--progress-wins);
+  height: 4px;
+  border-radius: 8px 0 0 8px;
+}
+
+.team-card__chart-draws {
+  background-color: var(--color-chart-2);
+  width: var(--progress-draws);
+  height: 4px;
+}
+
+.team-card__chart-losses {
+  background-color: var(--color-chart-3);
+  width: var(--progress-losses);
+  height: 4px;
+  border-radius: 0 8px 8px 0;
+}
+
+.team-card__points {
+  background-color: var(--color-primitives-colors-primary);
+  color: var(--color-primary-foreground);
+  font: var(--font-heading-large);
+  padding: 8px 40px 8px 40px;
+  border-radius: 8px;
+}
+
+.team-card__team-info .team-card__points {
+  align-self: end;
+}
