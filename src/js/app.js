@@ -17,6 +17,35 @@ function renderTeamCard(team) {
   const clone = template.content.cloneNode(true);
   const score = countScore(+team.intWin, +team.intDraw, +team.intLoss);
   clone.querySelector(".team-card__badge").textContent = team.intRank;
+
+  if (+team.intRank <= 3) {
+    clone
+      .querySelector(".team-card__badge")
+      .style.setProperty(
+        "--team-card__badge-bg-color",
+        "var(--color-badge-default-top)"
+      );
+    clone
+      .querySelector(".team-card__badge")
+      .style.setProperty(
+        "--team-card__badge-color",
+        "var(--color-badge-foreground)"
+      );
+  } else {
+    clone
+      .querySelector(".team-card__badge")
+      .style.setProperty(
+        "--team-card__badge-bg-color",
+        "var(--color-badge-default)"
+      );
+    clone
+      .querySelector(".team-card__badge")
+      .style.setProperty(
+        "--team-card__badge-color",
+        "var(--color-badge-default-foreground)"
+      );
+  }
+
   clone.querySelector(".team-card__image img").src = team.strBadge;
   clone.querySelector(".team-card__image img").alt = team.strTeam;
   clone.querySelector(".team-card__team-name").textContent = team.strTeam;
@@ -41,7 +70,6 @@ function renderTeamCard(team) {
 async function renderTeams() {
   const container = document.getElementById("teams_container");
   const teams = await getTeams();
-  console.log(teams);
   teams.forEach((team) => {
     container.appendChild(renderTeamCard(team));
   });
