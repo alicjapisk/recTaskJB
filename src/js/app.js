@@ -133,15 +133,18 @@ function renderForm(form) {
   const items = document.createElement("div");
   items.classList.add("team-card__stats-details-form-items");
 
-  form.split("").forEach((value) => {
-    const span = document.createElement("span");
-    span.classList.add(
-      "team-card__stats-details-form-items",
-      `team-card__stats-details-form-items-${value}`
-    );
-    span.textContent = value;
-    items.appendChild(span);
-  });
+  form
+    .split("")
+    .reverse()
+    .forEach((value) => {
+      const span = document.createElement("span");
+      span.classList.add(
+        "team-card__stats-details-form-items",
+        `team-card__stats-details-form-items-${value}`
+      );
+      span.textContent = value;
+      items.appendChild(span);
+    });
 
   container.appendChild(items);
   return container;
