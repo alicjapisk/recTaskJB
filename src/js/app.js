@@ -16,6 +16,24 @@ function renderTeamCard(team) {
   const template = document.getElementById("team-card-template");
   const clone = template.content.cloneNode(true);
   const score = countScore(+team.intWin, +team.intDraw, +team.intLoss);
+  const goalsConfig = [
+    {
+      sel: ".team-card__stats-details-goals-for",
+      val: team.intGoalsFor,
+      label: "Goals for",
+    },
+    {
+      sel: ".team-card__stats-details-goals-against",
+      val: team.intGoalsAgainst,
+      label: "Goals against",
+    },
+    {
+      sel: ".team-card__stats-details-goals-diff",
+      val: team.intGoalDifference,
+      label: "Goals difference",
+    },
+  ];
+
   clone.querySelector(".team-card__badge").textContent = team.intRank;
 
   if (+team.intRank <= 3) {
@@ -46,8 +64,8 @@ function renderTeamCard(team) {
       );
   }
 
-  clone.querySelector(".team-card__image img").src = team.strBadge;
-  clone.querySelector(".team-card__image img").alt = team.strTeam;
+  clone.querySelector(".team-card__image").src = team.strBadge;
+  clone.querySelector(".team-card__image").alt = team.strTeam;
   clone.querySelector(".team-card__team-name").textContent = team.strTeam;
   clone
     .querySelector(".team-card__chart-wins")
@@ -58,11 +76,24 @@ function renderTeamCard(team) {
   clone
     .querySelector(".team-card__chart-losses")
     .style.setProperty("--progress-losses", score.lossesPercentage + "%");
-  clone.querySelector(".team-card__wins").textContent = `W: ${team.intWin}`;
-  clone.querySelector(".team-card__draws").textContent = `D: ${team.intDraw}`;
-  clone.querySelector(".team-card__losses").textContent = `L: ${team.intLoss}`;
+  clone.querySelector(
+    ".team-card__stats-wins"
+  ).textContent = `W: ${team.intWin}`;
+  clone.querySelector(
+    ".team-card__stats-draws"
+  ).textContent = `D: ${team.intDraw}`;
+  clone.querySelector(
+    ".team-card__stats-losses"
+  ).textContent = `L: ${team.intLoss}`;
   clone.querySelector(".team-card__points-value").textContent =
     team.intPoints + " PTS";
+  clone
+    .querySelector(".team-card__stats-details-form")
+    .replaceWith(renderForm(team.strForm));
+
+  goalsConfig.forEach(({ sel, val, label }) => {
+    clone.querySelector(sel)?.replaceWith(renderGoals(val, label));
+  });
 
   return clone;
 }
@@ -70,6 +101,7 @@ function renderTeamCard(team) {
 async function renderTeams() {
   const container = document.getElementById("teams_container");
   const teams = await getTeams();
+  console.log(teams);
   teams.forEach((team) => {
     container.appendChild(renderTeamCard(team));
   });
@@ -87,6 +119,42 @@ function countScore(wins, draws, losses) {
     lossesPercentage,
     teamScoreSum,
   };
+}
+
+function renderForm(form) {
+  const container = document.createElement("div");
+  container.classList.add("team-card__stats-details-form");
+
+  const label = document.createElement("span");
+  label.classList.add("team-card__stats-details-form-label");
+  label.textContent = "Form:";
+  container.appendChild(label);
+
+  const items = document.createElement("div");
+  items.classList.add("team-card__stats-details-form-items");
+
+  form.split("").forEach((value) => {
+    const span = document.createElement("span");
+    span.classList.add(
+      "team-card__stats-details-form-items",
+      `team-card__stats-details-form-items-${value}`
+    );
+    span.textContent = value;
+    items.appendChild(span);
+  });
+
+  container.appendChild(items);
+  return container;
+}
+
+function renderGoals(value, text) {
+  const container = document.createElement("div");
+  container.classList.add("team-card__stats-details-goals");
+  container.innerHTML = `
+    <span class="team-card__stats-details-goals-label">${text}:</span>
+    <p class="team-card__stats-details-goals-value">${value}</p>
+  `;
+  return container;
 }
 
 renderTeams();
