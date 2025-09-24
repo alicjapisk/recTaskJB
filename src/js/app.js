@@ -27,6 +27,15 @@ async function getTeams() {
   const data = await res.json();
   return data.table;
 }
+function renderNoResults(query) {
+  const template = document.getElementById("no-results-template");
+  const clone = template.content.cloneNode(true);
+  clone.querySelector(
+    ".no-results__text"
+  ).textContent = `No teams found matching "${query}"`;
+
+  return clone;
+}
 
 async function renderTeams(filter = "") {
   const container = document.getElementById("teams_container");
@@ -40,6 +49,11 @@ async function renderTeams(filter = "") {
   );
 
   container.innerHTML = "";
+
+  if (filteredTeams.length === 0) {
+    container.appendChild(renderNoResults(filter));
+    return;
+  }
 
   filteredTeams.forEach((team) => {
     container.appendChild(renderTeamCard(team));
