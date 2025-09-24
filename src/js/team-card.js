@@ -20,6 +20,14 @@ export function renderTeamCard(team) {
     },
   ];
 
+  function removeSkeletons(element) {
+    element.querySelectorAll("[class*='skeleton']").forEach((el) => {
+      el.classList.remove(
+        ...[...el.classList].filter((c) => c.startsWith("skeleton"))
+      );
+    });
+  }
+
   clone.querySelector(".team-card__badge").textContent = team.intRank;
 
   if (+team.intRank <= 3) {
@@ -49,9 +57,10 @@ export function renderTeamCard(team) {
         "var(--color-badge-default-foreground)"
       );
   }
+  clone
+    .querySelector(".team-card__image")
+    .style.setProperty("--team-badge-img", `url(${team.strBadge})`);
 
-  clone.querySelector(".team-card__image").src = team.strBadge;
-  clone.querySelector(".team-card__image").alt = team.strTeam;
   clone.querySelector(".team-card__team-name").textContent = team.strTeam;
   clone
     .querySelector(".team-card__chart-wins")
@@ -81,6 +90,7 @@ export function renderTeamCard(team) {
     clone.querySelector(sel)?.replaceWith(renderGoals(val, label));
   });
 
+  removeSkeletons(clone);
   return clone;
 }
 

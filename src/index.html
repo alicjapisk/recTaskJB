@@ -11,7 +11,7 @@
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-          <div>
+          <div class="task-view">
             <div class="page-header">
               <h1 class="page-header__title">Premier League</h1>
               <input
@@ -25,36 +25,32 @@
             <template id="team-card-template">
               <div class="team-card">
                 <div class="team-card__body">
-                  <p class="team-card__badge"></p>
+                  <p class="team-card__badge skeleton"></p>
                   <div class="team-card__team-info">
                     <div class="team-card__header">
-                      <img
-                        src=""
-                        alt="$"
-                        width="48"
-                        height="48"
-                        class="team-card__image"
-                      />
-                      <h3 class="team-card__team-name"></h3>
+                      <div class="team-card__image skeleton skeleton-img"></div>
+                      <h3
+                        class="team-card__team-name skeleton skeleton-text"
+                      ></h3>
                     </div>
                     <div class="team-card__last-matches">
-                      <div class="team-card__chart">
+                      <div class="team-card__chart skeleton skeleton-chart">
                         <div class="team-card__chart-wins"></div>
                         <div class="team-card__chart-draws"></div>
                         <div class="team-card__chart-losses"></div>
                       </div>
-                      <div class="team-card__stats">
+                      <div class="team-card__stats skeleton skeleton-stats">
                         <p class="team-card__stats-wins"></p>
                         <p class="team-card__stats-draws"></p>
                         <p class="team-card__stats-losses"></p>
                       </div>
                     </div>
-                    <div class="team-card__points">
+                    <div class="team-card__points skeleton skeleton-points">
                       <p class="team-card__points-value"></p>
                     </div>
                   </div>
                 </div>
-                <div class="team-card__stats-details">
+                <div class="team-card__stats-details skeleton-hidden">
                   <div class="team-card__stats-details-form"></div>
                   <div class="team-card__stats-details-goals-for"></div>
                   <div class="team-card__stats-details-goals-against"></div>

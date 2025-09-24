@@ -1093,6 +1093,7 @@ a:hover {
   --color-input-border-default: #cbd5e1;
   --color-input-text-placeholder: #334155;
   --color-foreground: #0f172a;
+  --color-skeleton-background: #e2e8f0;
 
   /* shadows */
   --shadow-elevation-01: 0 4px 4px 0 rgba(0, 0, 0, 0.04),
@@ -1106,6 +1107,10 @@ a:hover {
   --font-heading-large: 600 18px/24px var(--font-family-base);
   --font-body-medium-regular: 400 16px/24px var(--font-family-base);
   --font-display-x-large: 600 32px/40px var(--font-family-base);
+}
+
+.task-view {
+  margin: 0 16px 0 16px;
 }
 
 .teams_container {
@@ -1160,6 +1165,10 @@ a:hover {
 
 .team-card__image {
   border: 1px solid var(--color-border);
+  background-image: var(--team-badge-img);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -1342,6 +1351,57 @@ a:hover {
   font: var(--font-body-medium-regular);
 }
 
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+  background-color: var(--color-skeleton-background);
+}
+
+.skeleton-img {
+  border: none;
+  background-image: var(--color-skeleton-background);
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: var(--color-skeleton-background);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
+
+.skeleton-text {
+  width: 139px;
+  height: 24px;
+  border-radius: 9999px;
+}
+
+.skeleton-chart {
+  width: 100%;
+  height: 12px;
+  border-radius: 9999px;
+  padding: 0;
+}
+.skeleton-stats {
+  width: 50%;
+  height: 12px;
+  border-radius: 9999px;
+  margin-top: 8px;
+}
+
+.skeleton-points {
+  width: 144px;
+  height: 56px;
+  border-radius: 8px;
+  margin-top: 16px;
+  padding: 0;
+}
+
+.skeleton-hidden {
+  display: none;
+  padding: 0;
+}
+
 @media (min-width: 800px) {
   .team-card__team-info {
     flex-direction: row;
@@ -1390,5 +1450,11 @@ a:hover {
   .page-header {
     background-image: url("assets/header-background/background-xl.png");
     background-repeat: no-repeat;
+  }
+  .skeleton-points {
+    margin-top: 0px;
+  }
+  .skeleton-stats {
+    margin-top: 0px;
   }
 }
