@@ -1415,8 +1415,9 @@ a:hover {
   padding: 0;
 }
 
-/* no results */
-.no-results {
+/* no results, error */
+.no-results,
+.error {
   padding: 24px;
   text-align: center;
   background-color: var(--color-card);
@@ -1428,7 +1429,8 @@ a:hover {
   gap: 16px;
 }
 
-.no-results__text {
+.no-results__text,
+.error__text {
   font: var(--font-body-medium-regular);
   color: var(--color-empty-state-foreground);
 }
