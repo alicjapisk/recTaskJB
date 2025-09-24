@@ -1088,6 +1088,7 @@ a:hover {
   --color-primitives-colors-primary: #4a6cf7;
   --color-badge-default-foreground: #0f172a;
   --color-accent: #ebefff;
+  --color-accent-02: #ced8ff;
   --color-border: #cbd5e1;
   --color-accent-foreground: #2951f7;
   --color-input-border-default: #cbd5e1;
@@ -1319,18 +1320,26 @@ a:hover {
   font: var(--font-heading-large);
   color: var(--color-accent-foreground);
 }
+.page-header__img {
+  margin: 16px 0 16px 0;
+}
 .page-header {
   display: flex;
   flex-direction: column;
-  padding: 32px 24px;
-  background-image: url("assets/header-background/background-sm.png");
   align-items: center;
   margin-bottom: 16px;
   border-radius: 0 0 16px 16px;
+  background-color: var(--color-accent);
 }
 .page-header__title {
   font: var(--font-display-x-large);
   color: var(--color-foreground);
+}
+.search-bar {
+  padding: 8px;
+  background-color: var(--color-accent-02);
+  width: 100%;
+  border-radius: 0 0 8px 8px;
 }
 .search-bar__input {
   width: 100%;
@@ -1351,6 +1360,7 @@ a:hover {
   font: var(--font-body-medium-regular);
 }
 
+/* skeleton */
 .skeleton {
   animation: skeleton-loading 1s linear infinite alternate;
   background-color: var(--color-skeleton-background);
@@ -1432,6 +1442,17 @@ a:hover {
     background-repeat: no-repeat;
     background-size: cover;
   }
+  .page-header__img {
+    display: none;
+  }
+  .search-bar {
+    background-color: transparent;
+    padding: 0 32px 24px 32px;
+  }
+  .page-header__title {
+    margin-bottom: 24px;
+    margin-top: 32px;
+  }
 }
 
 @media (min-width: 1440px) {
@@ -1456,5 +1477,16 @@ a:hover {
   }
   .skeleton-stats {
     margin-top: 0px;
+  }
+  .page-header__img {
+    display: none;
+  }
+  .search-bar {
+    background-color: transparent;
+    padding: 0 32px 24px 32px;
+  }
+  .page-header__title {
+    margin-bottom: 24px;
+    margin-top: 32px;
   }
 }
