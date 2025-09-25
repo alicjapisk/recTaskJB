@@ -1097,6 +1097,7 @@ a:hover {
   --color-skeleton-background: #e2e8f0;
   --color-empty-state-foreground: #334155;
   --color-input-border-ring: #4a6cf7;
+  --color-input-background: #ffffff;
 
   /* shadows */
   --shadow-elevation-01: 0 4px 4px 0 rgba(0, 0, 0, 0.04),
@@ -1343,24 +1344,34 @@ a:hover {
   width: 100%;
   border-radius: 0 0 8px 8px;
 }
-.search-bar__input {
-  width: 100%;
-  box-sizing: border-box;
-  background-image: url("assets/icon-search.svg");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-  background-size: 24px;
+.search-bar__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   padding: 8px 16px;
   border-radius: 8px;
   border: 1px solid var(--color-input-border-default);
   color: var(--color-input-text-placeholder);
   font: var(--font-body-medium-regular);
   border: 1px solid var(--color-input-border-ring);
+  background-color: var(--color-input-background);
+}
+.search-bar__input {
+  width: 100%;
+  border: none;
+}
+.search-bar__input:focus {
+  outline: none;
 }
 
 .search-bar__input::placeholder {
   color: var(--color-input-text-placeholder);
   font: var(--font-body-medium-regular);
+}
+.search-bar__button {
+  border: 0;
+  background-color: transparent;
+  padding: 0;
 }
 
 /* skeleton */
