@@ -1,8 +1,8 @@
-import { sortTeams } from "./sortTeams.js";
+import { sortTeams } from "./sort-teams.js";
 import { getTeams } from "./api.js";
 import { renderTeamCard } from "./team-card.js";
 import { renderNoResults } from "./no-results.js";
-import { renderApiError } from "./apiError.js";
+import { renderApiError } from "./api-error.js";
 
 export async function renderTeams(filter = "") {
   const container = document.getElementById("teams_container");

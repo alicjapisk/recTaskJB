@@ -1,6 +1,6 @@
-import { handleSearchBarState } from "./handleSearchBarState.js";
 import initInlineSVG from "./inline-svg.js";
-import { renderTeams } from "./renderTeams.js";
+import { renderTeams } from "./render-teams.js";
+import { updateSearchBar } from "./search-bar.js";
 import { renderSkeletons } from "./skeletons.js";
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -19,6 +19,6 @@ window.addEventListener("scroll", async () => {
 
 document.getElementById("searchInput").addEventListener("input", (e) => {
   const query = e.target.value.trim();
-  handleSearchBarState(query);
+  updateSearchBar(query);
   renderTeams(query);
 });
