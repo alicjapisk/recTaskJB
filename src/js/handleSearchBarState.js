@@ -6,12 +6,12 @@ export function handleSearchBarState(query) {
   const searchBarInput = document.getElementById("searchInput");
 
   if (query.length > 0) {
-    searchBarImg.src = "assets/icon-close.svg";
+    searchBarImg.src = "assets/icons/icon-close.svg";
     searchBarImg.alt = "Close icon";
     searchBarBtn.onclick = () => {
       searchBarInput.value = "";
       renderTeams();
-      searchBarImg.src = "assets/icon-search.svg";
+      searchBarImg.src = "assets/icons/icon-search.svg";
       searchBarImg.alt = "Search icon";
       searchBarBtn.onclick = null;
     };
