@@ -8,3 +8,11 @@ export function renderSkeletons(count) {
     container.appendChild(clone);
   }
 }
+
+export function removeSkeletons(element) {
+  element.querySelectorAll("[class*='skeleton']").forEach((el) => {
+    el.classList.remove(
+      ...[...el.classList].filter((c) => c.startsWith("skeleton"))
+    );
+  });
+}

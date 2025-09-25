@@ -1,7 +1,13 @@
+import { countScore } from "./team-card-utils.js";
+import { renderForm } from "./team-card-form.js";
+import { renderGoals } from "./team-card-goals.js";
+import { removeSkeletons } from "./skeletons.js";
+
 export function renderTeamCard(team) {
   const template = document.getElementById("team-card-template");
   const clone = template.content.cloneNode(true);
   const score = countScore(+team.intWin, +team.intDraw, +team.intLoss);
+
   const goalsConfig = [
     {
       sel: ".team-card__stats-details-goals-for",
@@ -20,57 +26,38 @@ export function renderTeamCard(team) {
     },
   ];
 
-  function removeSkeletons(element) {
-    element.querySelectorAll("[class*='skeleton']").forEach((el) => {
-      el.classList.remove(
-        ...[...el.classList].filter((c) => c.startsWith("skeleton"))
-      );
-    });
-  }
-
-  clone.querySelector(".team-card__badge").textContent = team.intRank;
-
+  // badge
+  const badge = clone.querySelector(".team-card__badge");
+  badge.textContent = team.intRank;
   if (+team.intRank <= 3) {
-    clone
-      .querySelector(".team-card__badge")
-      .style.setProperty(
-        "--team-card__badge-bg-color",
-        "var(--color-badge-default-top)"
-      );
-    clone
-      .querySelector(".team-card__badge")
-      .style.setProperty(
-        "--team-card__badge-color",
-        "var(--color-badge-foreground)"
-      );
+    badge.style.setProperty(
+      "--team-card__badge-bg-color",
+      "var(--color-badge-default-top)"
+    );
+    badge.style.setProperty(
+      "--team-card__badge-color",
+      "var(--color-badge-foreground)"
+    );
   } else {
-    clone
-      .querySelector(".team-card__badge")
-      .style.setProperty(
-        "--team-card__badge-bg-color",
-        "var(--color-badge-default)"
-      );
-    clone
-      .querySelector(".team-card__badge")
-      .style.setProperty(
-        "--team-card__badge-color",
-        "var(--color-badge-default-foreground)"
-      );
+    badge.style.setProperty(
+      "--team-card__badge-bg-color",
+      "var(--color-badge-default)"
+    );
+    badge.style.setProperty(
+      "--team-card__badge-color",
+      "var(--color-badge-default-foreground)"
+    );
   }
+
+  // logo
   clone
     .querySelector(".team-card__image")
     .style.setProperty("--team-badge-img", `url(${team.strBadge})`);
 
+  // name
   clone.querySelector(".team-card__team-name").textContent = team.strTeam;
-  clone
-    .querySelector(".team-card__chart-wins")
-    .style.setProperty("--progress-wins", score.winsPercentage + "%");
-  clone
-    .querySelector(".team-card__chart-draws")
-    .style.setProperty("--progress-draws", score.drawsPercentage + "%");
-  clone
-    .querySelector(".team-card__chart-losses")
-    .style.setProperty("--progress-losses", score.lossesPercentage + "%");
+
+  // stats
   clone.querySelector(
     ".team-card__stats-wins"
   ).textContent = `W: ${team.intWin}`;
@@ -80,69 +67,31 @@ export function renderTeamCard(team) {
   clone.querySelector(
     ".team-card__stats-losses"
   ).textContent = `L: ${team.intLoss}`;
-  clone.querySelector(".team-card__points-value").textContent =
-    team.intPoints + " PTS";
+  clone.querySelector(
+    ".team-card__points-value"
+  ).textContent = `${team.intPoints} PTS`;
+
+  // charts
+  clone
+    .querySelector(".team-card__chart-wins")
+    .style.setProperty("--progress-wins", score.winsPercentage + "%");
+  clone
+    .querySelector(".team-card__chart-draws")
+    .style.setProperty("--progress-draws", score.drawsPercentage + "%");
+  clone
+    .querySelector(".team-card__chart-losses")
+    .style.setProperty("--progress-losses", score.lossesPercentage + "%");
+
+  // form
   clone
     .querySelector(".team-card__stats-details-form")
     .replaceWith(renderForm(team.strForm));
 
+  // goals
   goalsConfig.forEach(({ sel, val, label }) => {
     clone.querySelector(sel)?.replaceWith(renderGoals(val, label));
   });
 
   removeSkeletons(clone);
   return clone;
-}
-
-function countScore(wins, draws, losses) {
-  const teamScoreSum = wins + draws + losses;
-  const winsPercentage = (wins / teamScoreSum) * 100;
-  const drawsPercentage = (draws / teamScoreSum) * 100;
-  const lossesPercentage = (losses / teamScoreSum) * 100;
-
-  return {
-    winsPercentage,
-    drawsPercentage,
-    lossesPercentage,
-    teamScoreSum,
-  };
-}
-
-function renderForm(form) {
-  const container = document.createElement("div");
-  container.classList.add("team-card__stats-details-form");
-
-  const label = document.createElement("span");
-  label.classList.add("team-card__stats-details-form-label");
-  label.textContent = "Form:";
-  container.appendChild(label);
-
-  const items = document.createElement("div");
-  items.classList.add("team-card__stats-details-form-items");
-
-  form
-    .split("")
-    .reverse()
-    .forEach((value) => {
-      const span = document.createElement("span");
-      span.classList.add(
-        "team-card__stats-details-form-items",
-        `team-card__stats-details-form-items-${value}`
-      );
-      span.textContent = value;
-      items.appendChild(span);
-    });
-
-  container.appendChild(items);
-  return container;
-}
-
-function renderGoals(value, text) {
-  const container = document.createElement("div");
-  container.classList.add("team-card__stats-details-goals");
-  container.innerHTML = `
-    <span class="team-card__stats-details-goals-label">${text}:</span>
-    <p class="team-card__stats-details-goals-value">${value}</p>
-  `;
-  return container;
 }

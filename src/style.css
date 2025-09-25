@@ -1114,7 +1114,7 @@ a:hover {
 }
 
 .task-view {
-  margin: 0 16px 0 16px;
+  margin: 0 8px;
 }
 
 .teams_container {
@@ -1253,8 +1253,16 @@ a:hover {
   padding: 8px 16px;
   border-top: 1px solid var(--color-border);
   gap: 8px;
-  overflow: auto;
+  overflow: scroll;
   white-space: nowrap;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 .team-card__stats-details-form {
@@ -1266,6 +1274,7 @@ a:hover {
   padding: 12px 28px;
   border-radius: 8px;
   align-items: center;
+  justify-content: center;
 }
 .team-card__stats-details-form-label {
   color: var(--color-muted-foreground);
@@ -1347,18 +1356,19 @@ a:hover {
 .search-bar__container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  padding: 8px 16px;
+  padding: 7px 16px;
   border-radius: 8px;
   border: 1px solid var(--color-input-border-default);
-  color: var(--color-input-text-placeholder);
-  font: var(--font-body-medium-regular);
   border: 1px solid var(--color-input-border-ring);
   background-color: var(--color-input-background);
 }
 .search-bar__input {
   width: 100%;
   border: none;
+  padding: 0;
+  margin: 0;
+  color: var(--color-input-text-placeholder);
+  font: var(--font-body-medium-regular);
 }
 .search-bar__input:focus {
   outline: none;
@@ -1369,9 +1379,12 @@ a:hover {
   font: var(--font-body-medium-regular);
 }
 .search-bar__button {
-  border: 0;
-  background-color: transparent;
+  background: none;
+  border: none;
   padding: 0;
+  outline: inherit;
+  width: 24px;
+  height: 24px;
 }
 
 /* skeleton */
