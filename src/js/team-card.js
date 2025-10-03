@@ -29,24 +29,14 @@ export function renderTeamCard(team) {
   // badge
   const badge = clone.querySelector(".team-card__badge");
   badge.textContent = team.intRank;
+  badge.textContent = team.intRank;
+
   if (+team.intRank <= 3) {
-    badge.style.setProperty(
-      "--team-card__badge-bg-color",
-      "var(--color-badge-default-top)"
-    );
-    badge.style.setProperty(
-      "--team-card__badge-color",
-      "var(--color-badge-foreground)"
-    );
+    badge.style.setProperty("--team-card__badge-bg-color", "#4a6cf7");
+    badge.style.setProperty("--team-card__badge-color", "#f1f5f9");
   } else {
-    badge.style.setProperty(
-      "--team-card__badge-bg-color",
-      "var(--color-badge-default)"
-    );
-    badge.style.setProperty(
-      "--team-card__badge-color",
-      "var(--color-badge-default-foreground)"
-    );
+    badge.style.setProperty("--team-card__badge-bg-color", "#e2e8f0");
+    badge.style.setProperty("--team-card__badge-color", "#0f172a");
   }
 
   // logo

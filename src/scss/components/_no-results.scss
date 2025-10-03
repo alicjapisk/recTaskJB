@@ -1,0 +1,17 @@
+.no-results,
+.error {
+  padding: 24px;
+  text-align: center;
+  background-color: $color-card;
+  border-radius: 16px;
+  box-shadow: $shadow-elevation-01;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  &__text {
+    font: $font-body-medium-regular;
+    color: $color-empty-state-foreground;
+  }
+}
