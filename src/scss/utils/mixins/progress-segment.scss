@@ -1,0 +1,9 @@
+@mixin progress-segment($bg, $width, $radius: null) {
+  background-color: $bg;
+  width: $width;
+  height: 4px;
+
+  @if $radius != null {
+    border-radius: $radius;
+  }
+}

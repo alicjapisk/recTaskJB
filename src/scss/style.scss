@@ -10,6 +10,8 @@
 @import "base/typography";
 
 @import "layouts/grid";
+@import "layouts/teams";
+@import "layouts/task-view";
 
 @import "components/icon";
 @import "components/instructions";
@@ -18,7 +20,6 @@
 @import "pages/task";
 @import "components/page-header";
 @import "components/search-bar";
-@import "components/team-card";
+@import "components/team-card/team-card";
 @import "components/skeleton";
 @import "components/no-results";
-@import "components/task-view";

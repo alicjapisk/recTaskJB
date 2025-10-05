@@ -1,0 +1,9 @@
+@import "team-card.body";
+@import "team-card.header";
+@import "team-card.chart";
+@import "team-card.stats";
+
+.team-card {
+  @include surface($color-card, 16px, $shadow-elevation-01);
+  @include flex();
+}

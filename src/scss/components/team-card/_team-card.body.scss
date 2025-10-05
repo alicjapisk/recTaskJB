@@ -1,0 +1,41 @@
+.team-card {
+  &__body {
+    @include flex(row);
+  }
+
+  &__team-info {
+    padding: 16px;
+    width: 100%;
+    @include flex();
+
+    @include media-breakpoint-up("md") {
+      @include flex(row, center, space-between, 16px);
+    }
+  }
+
+  &__points {
+    @include surface($color-primitives-colors-primary, 8px);
+    @include font-token($font-heading-large, $color-primary-foreground);
+    padding: 8px 40px;
+  }
+
+  &__team-info &__points {
+    align-self: end;
+    @include media-breakpoint-up("md") {
+      align-self: center;
+    }
+  }
+
+  &__last-matches {
+    @include flex();
+    flex: 1;
+
+    @include media-breakpoint-up("lg") {
+      @include flex(row, $justify: end, $gap: 16px);
+    }
+
+    .team-card__stats {
+      align-self: end;
+    }
+  }
+}

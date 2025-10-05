@@ -1,0 +1,5 @@
+@mixin pill($bg, $padding, $color, $radius: 16px) {
+  @include surface($bg, $radius, null);
+  padding: $padding;
+  @include font-token($font-caption-x-small-bold, $color);
+}

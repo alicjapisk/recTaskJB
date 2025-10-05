@@ -1,0 +1,4 @@
+@mixin font-token($font, $color: $color-foreground) {
+  font: $font;
+  color: $color;
+}

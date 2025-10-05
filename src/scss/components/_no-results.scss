@@ -1,17 +1,14 @@
 .no-results,
 .error {
+  @include flex($align: center, $gap: 16px);
+  @include surface($shadow: $shadow-elevation-01, $radius: 8px);
   padding: 24px;
-  text-align: center;
-  background-color: $color-card;
-  border-radius: 16px;
-  box-shadow: $shadow-elevation-01;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
 
   &__text {
-    font: $font-body-medium-regular;
-    color: $color-empty-state-foreground;
+    @include font-token(
+      $font-body-medium-regular,
+      $color-empty-state-foreground
+    );
+    text-align: center;
   }
 }

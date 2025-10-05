@@ -1,19 +1,16 @@
 .search-bar {
   padding: 8px;
-  background-color: $color-accent-02;
   width: 100%;
-  border-radius: 0 0 8px 8px;
+  @include surface($color-accent-02, $radius: 0 0 8px 8px);
   @include media-breakpoint-up("lg") {
     background-color: transparent;
     padding: 0 32px 24px 32px;
   }
   &__container {
-    display: flex;
-    flex-direction: row;
+    @include flex(row);
+    @include surface($color-input-background, $radius: 8px);
     padding: 7px 16px;
-    border-radius: 8px;
     border: 1px solid $color-input-border-default;
-    background-color: $color-input-background;
 
     &.active {
       border: 1px solid $color-input-border-ring;
@@ -25,16 +22,20 @@
     border: none;
     margin: 0;
     padding: 0;
-    color: $color-input-text-placeholder;
-    font: $font-body-medium-regular;
+    @include font-token(
+      $font-body-medium-regular,
+      $color-input-text-placeholder
+    );
 
     &:focus {
       outline: none;
     }
 
     &::placeholder {
-      color: $color-input-text-placeholder;
-      font: $font-body-medium-regular;
+      @include font-token(
+        $font-body-medium-regular,
+        $color-input-text-placeholder
+      );
     }
   }
 

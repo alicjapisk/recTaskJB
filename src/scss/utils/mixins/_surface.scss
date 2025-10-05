@@ -1,0 +1,11 @@
+@mixin surface($bg: $color-card, $radius: null, $shadow: null) {
+  background-color: $bg;
+
+  @if $radius != null {
+    border-radius: $radius;
+  }
+
+  @if $shadow != null {
+    box-shadow: $shadow;
+  }
+}

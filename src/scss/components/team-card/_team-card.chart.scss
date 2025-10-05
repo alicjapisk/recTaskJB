@@ -1,0 +1,33 @@
+.team-card {
+  &__chart {
+    @include flex(row);
+    padding-bottom: 8px;
+
+    @include media-breakpoint-up("md") {
+      padding-top: 8px;
+    }
+    @include media-breakpoint-up("lg") {
+      width: 228px;
+    }
+
+    &-wins {
+      @include progress-segment(
+        $color-chart-1,
+        var(--progress-wins),
+        8px 0 0 8px
+      );
+    }
+
+    &-draws {
+      @include progress-segment($color-chart-2, var(--progress-draws));
+    }
+
+    &-losses {
+      @include progress-segment(
+        $color-chart-3,
+        var(--progress-losses),
+        0 8px 8px 0
+      );
+    }
+  }
+}
